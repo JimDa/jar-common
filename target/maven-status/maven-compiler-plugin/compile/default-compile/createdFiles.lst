@@ -1,0 +1,3 @@
+dto\User.class
+dto\OAuthToken.class
+dto\CustomAuthorityDeserializer.class
