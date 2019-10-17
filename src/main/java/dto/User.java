@@ -8,13 +8,15 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -23,10 +25,10 @@ public class User extends BaseSchema implements UserDetails {
     private static final long serialVersionUID = 5359333896422354364L;
 
     private Integer id;
-    @NotBlank
+    @NotEmpty
     @Length(min = 2, max = 8, message = "用户名长度在2到8个字符范围内！")
     private String username;
-    @NotBlank
+    @NotEmpty
     @Length(min = 6, max = 10, message = "请输入6到10位数字字母组合的密码！")
     private String password;
     @Email
@@ -39,17 +41,10 @@ public class User extends BaseSchema implements UserDetails {
 
     private List<String> roles;
 
-    public User(Integer id, String username, String password, List<String> roles) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-    }
-
     @Override
     @JsonDeserialize(using = CustomAuthorityDeserializer.class)
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return this.roles.stream().map(r -> new SimpleGrantedAuthority(r)).collect(Collectors.toList());
     }
 
     @Override
