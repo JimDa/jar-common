@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -25,18 +26,27 @@ public class User extends BaseSchema implements UserDetails {
     private static final long serialVersionUID = 5359333896422354364L;
 
     private Integer id;
+
     @NotEmpty
     @Length(min = 2, max = 8, message = "用户名长度在2到8个字符范围内！")
     private String username;
+
     @NotEmpty
     @Length(min = 6, max = 10, message = "请输入6到10位数字字母组合的密码！")
     private String password;
+
     @Email
+    @NotEmpty
     private String email;
+
+    @NotEmpty
     private String gender;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
+    @NotNull
     private Date birthDate;
+
     private Collection<? extends GrantedAuthority> authorities;
 
     private List<String> roles;
