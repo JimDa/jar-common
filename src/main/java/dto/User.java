@@ -36,15 +36,12 @@ public class User extends BaseSchema implements UserDetails {
     private String password;
 
     @Email
-    @NotEmpty
     private String email;
 
-    @NotEmpty
     private String gender;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(pattern = "yyyy-MM-dd")
-    @NotNull
     private Date birthDate;
 
     private Collection<? extends GrantedAuthority> authorities;
