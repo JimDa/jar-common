@@ -1,4 +1,4 @@
-package dto;
+package schema;
 
 import java.util.Date;
 
