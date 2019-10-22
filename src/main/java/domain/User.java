@@ -39,6 +39,9 @@ public class User extends BaseSchema implements UserDetails {
     @Email
     private String email;
 
+    @Length(min = 11, max = 11, message = "请输入正确的手机号码！")
+    private String phoneNum;
+
     private String gender;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
