@@ -8,6 +8,7 @@ import java.util.Collection;
 
 /**
  * @author dpc
+ * 抽象公用token，支持多方式登录。
  */
 public class MultiAuthenticationToken extends AbstractAuthenticationToken {
     private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;

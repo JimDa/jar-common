@@ -6,6 +6,10 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 
+/**
+ * @author dpc
+ * 会话工具类，获取当前会话信息。
+ */
 public class ContextUtils {
     public static OAuth2Authentication getSessionAuthentication() {
         SecurityContext context = SecurityContextHolder.getContext();
